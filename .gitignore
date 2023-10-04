@@ -9,17 +9,16 @@
 .DS_Store
 .parcel-cache
 .github/
-tailwind.config.js
 index.html
 yarn.lock
 yarn-error.log
 types/generated/*.d.ts
 
-# Dist directory
-dist/
-
 # Python virtual env
 functions/venv/
+
+# Log files
+*.log
 
 .turbo
 
