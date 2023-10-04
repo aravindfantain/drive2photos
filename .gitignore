@@ -29,3 +29,5 @@ isolate*.log
 
 # Generated files during tests
 /tests/evaluate-tailwind-functions.test.html
+
+/functions/__pycache__/
