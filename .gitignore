@@ -31,3 +31,5 @@ isolate*.log
 /tests/evaluate-tailwind-functions.test.html
 
 /functions/__pycache__/
+
+/dist/bootstrap-5.3.2-dist/
