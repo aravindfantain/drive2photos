@@ -6,7 +6,7 @@ from firebase_functions import https_fn
 from firebase_admin import initialize_app
 
 import testfns
-# import googleops
+import googleops
 
 initialize_app()
 #
@@ -18,5 +18,5 @@ def on_request_example(req: https_fn.Request) -> https_fn.Response:
 
 @https_fn.on_request()
 def on_get_creds(req: https_fn.Request) -> https_fn.Response:
-    # retval = googleops.get_creds()
+    retval = googleops.get_creds()
     return https_fn.Response('That worked??')

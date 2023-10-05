@@ -1,5 +1,3 @@
-import streamlit as st 
-
 import os.path
 import sys
 import requests
@@ -44,7 +42,7 @@ def drive_auth():
     except:
         e = sys.exc_info()[0]
         # TODO(developer) - Handle errors individually
-        st.write(f'An error occurred: {e}')
+        print(f'An error occurred: {e}')
         raise()
 
 def photos_auth():
@@ -54,7 +52,7 @@ def photos_auth():
     except:
         e = sys.exc_info()[0]
         # TODO(developer) - Handle errors individually
-        st.write(f'An error occurred: {e}')
+        print(f'An error occurred: {e}')
         raise()
 
 def get_albums():

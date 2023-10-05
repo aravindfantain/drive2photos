@@ -33,3 +33,10 @@ isolate*.log
 /functions/__pycache__/
 
 /dist/bootstrap-5.3.2-dist/
+
+# For some reason, this doesn't work through pip, so including as is
+functions/google_auth_oauthlib
+functions/oauthlib 
+functions/requests_oauthlib
+
+functions/token.json
