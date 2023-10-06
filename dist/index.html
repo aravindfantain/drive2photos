@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/bootstrap-5.3.2-dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <!-- Local CSS -->
+  <link href="/css/common.css" rel="stylesheet">
   <title>Drive to Photos made easy!</title>
 
   <!-- update the version number as needed -->
@@ -29,21 +31,44 @@
 
 <body>
 
-  <p class="fs-1">Welcome to Drive to Photos</p>
-  <p class="fs-3">
-    This can be used to move your photos & images from a Google Drive folder to
-    Goolge Photos. The Drive folder name will be used as the album name.
-  </p>
+  <!-- This is for disabling user input when spinner is on -->
+  <div class="overlay"></div>
 
-  <form>
+  <div class="container">
 
-    <div class="col-md-3">
-      <label for="topFolderInput" class="form-label">Enter Top Level Folder Name</label>
-      <input type="text" class="form-control" id="topFolderInput" aria-describedby="topFolderInput">
+    <div class="spinner text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
-  </form>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <!-- Navbar content -->
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="/img/icons8-office-48.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+          Drive To Photos
+        </a>
+        <button class="btn btn-outline-success">Login</button>
+      </div>
+    </nav>
+
+    <p class="fs-5">
+      This can be used to move your photos & images from a Google Drive folder to
+      Goolge Photos. The Drive folder name will be used as the album name.
+    </p>
+
+    <form>
+      <div class="col-md-3">
+        <label for="topFolderInput" class="form-label">Enter Top Level Folder Name</label>
+        <input type="text" class="form-control" id="topFolderInput" aria-describedby="topFolderInput">
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+    </form>
+
+  </div>
 
   <p id="load" style="position: absolute; bottom: 0;">Firebase SDK Loading&hellip;</p>
 
@@ -54,15 +79,28 @@
 
   <script>
     // Custom scripts
-    $(document).ready(function () { 
+    $(document).ready(function () {
+
+      //Show / Hide spinner
+      function showSpinner() {
+        $('.spinner').show();
+      }
+
+      function hideSpinner() {
+        $('.spinner').hide();
+      }
+
+      setTimeout(hideSpinner, 4000);
+
+
       // On button click, get value 
       // of input control Show alert 
       // message box 
-      $("#submitButton").click(function () { 
-        var inputString = $("#topFolderInput").val(); 
-        alert(inputString); 
-      }); 
-}); 
+      $("#submitButton").click(function () {
+        var inputString = $("#topFolderInput").val();
+        alert(inputString);
+      });
+    }); 
   </script>
 
   <script type="module">
