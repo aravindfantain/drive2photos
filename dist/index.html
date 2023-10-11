@@ -4,9 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link href="/bootstrap-5.3.2-dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   <!-- Local CSS -->
   <link href="/css/common.css" rel="stylesheet">
+
   <title>Drive to Photos made easy!</title>
 
   <!-- update the version number as needed -->
@@ -25,7 +27,18 @@
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
     -->
-  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  <script defer src="/__/firebase/init.js?useEmulator=false"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+
+  <!-- Jquery  -->
+  <script src="/jquery/jquery.min.js" crossorigin="anonymous"></script>
+  <!-- Bootstrap -->
+  <script src="/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Local JS -->
+  <script src="/js/common.js"></script>
 
 </head>
 
@@ -36,7 +49,7 @@
 
   <div class="container">
 
-    <div class="spinner text-center">
+    <div class="spinner text-center" style="display: none">
       <div class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
@@ -47,13 +60,30 @@
       <!-- Navbar content -->
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img src="/img/icons8-office-48.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+          <img src="/img/icons8-office-48.png" alt="Logo" width="40" height="40" style="border-radius: 40px;"
+            class="d-inline-block align-text-center">
           Drive To Photos
         </a>
-        <button class="btn btn-outline-success">Login</button>
+        <div class="navbar-nav ms-auto">
+          <div id="user-detail" style="display: none;" class="dropdown">
+            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <span id="user-name"></span>
+              <img id="user-img" src="" alt="user" width="40" height="40" style="border-radius: 40px;"
+                class="d-inline-block align-text-center">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" onclick="signOut()">Logout</a></li>
+            </ul>
+          </div>
+          <div id="firebaseui-auth-container"></div>
+        </div>
       </div>
     </nav>
 
+
+    <!--
     <p class="fs-5">
       This can be used to move your photos & images from a Google Drive folder to
       Goolge Photos. The Drive folder name will be used as the album name.
@@ -67,21 +97,21 @@
 
       <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
     </form>
+    -->
+
+    <!-- The surrounding HTML is left untouched by FirebaseUI.
+     Your app may use that space for branding, controls and other customizations.-->
+    <div id="firebaseui-auth-container"></div>
+    <!-- <div id="loader">Loading...</div> -->
 
   </div>
 
   <p id="load" style="position: absolute; bottom: 0;">Firebase SDK Loading&hellip;</p>
 
-  <!-- Jquery  -->
-  <script src="/jquery/jquery.min.js" crossorigin="anonymous"></script>
-  <!-- Local JS -->
-  <script src="/js/common.js" crossorigin="anonymous"></script>
-  <!-- Bootstrap -->
-  <script src="/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+
     document.addEventListener('DOMContentLoaded', function () {
       const loadEl = document.querySelector('#load');
       // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
