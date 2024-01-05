@@ -2,6 +2,12 @@
 $(document).ready(function () {
 
     showSpinner();
+    $.get('http://127.0.0.1:5001/drive2photos-12345/us-central1/login', (data) => {
+        $("#includeHTML").text(JSON.stringify(data));
+        hideSpinner();
+    });
+
+    /*
     firebase.auth().onAuthStateChanged(user => {
 
         if (user) {
@@ -66,6 +72,11 @@ $(document).ready(function () {
 
         }
     });
+
+    $.get('http://127.0.0.1:5001/drive2photos-12345/us-central1/on_request_example', (data) => {
+        $("#includeHTML").html(data);
+    });
+    */
 
 });
 
